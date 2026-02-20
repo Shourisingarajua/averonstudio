@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Free Consultation – CY Cybersecurity</title>
+
+  <!-- Poppins + FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet"/>
+  <script src="https://kit.fontawesome.com/YOUR_KIT_ID.js" crossorigin="anonymous"></script>
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --bg: #11101A;
+      --fg: #F7F9FA;
+      --accent1: #00A8FF;
+      --accent2: #00FFD1;
+      --section: #1e1c2b;
+      --font: 'Poppins', sans-serif;
+      --radius: 10px;
+      --transition: .3s ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--fg);
+      padding-top: 80px;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+      background: transparent;
+      z-index: 1000;
+    }
+    .logo {
+      font-size: 1.75rem; font-weight: 800;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      -webkit-background-clip: text; color: transparent;
+    }
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+    .nav-links a {
+      position: relative; padding: .5rem; font-weight: 600;
+      transition: color var(--transition);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; left: 0; bottom: 0;
+      width: 0; height: 2px;
+      background: var(--accent2);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent1);
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+    .nav-right {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .nav-search {
+      font-size: 1.2rem; cursor: pointer;
+      transition: color var(--transition);
+    }
+    .nav-search:hover { color: var(--accent1); }
+    .btn-login {
+      padding: .6rem 1.4rem; border: none; border-radius: var(--radius);
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      color: var(--bg); font-weight: 600; cursor: pointer;
+      transition: transform var(--transition);
+    }
+    .btn-login:hover { transform: translateY(-2px); }
+
+    /* THEME TOGGLE */
+    .theme-toggle {
+      position: fixed; top: 1rem; right: 1rem;
+      background: var(--section); border: none;
+      padding: 0.6rem; border-radius: 50%;
+      cursor: pointer; font-size: 1.2rem;
+      transition: transform var(--transition);
+      z-index: 1001;
+    }
+    .theme-toggle:hover { transform: scale(1.1); }
+
+    /* BACK TO TOP */
+    #backToTop {
+      position: fixed; bottom: 20px; right: 20px;
+      width: 48px; height: 48px; background: var(--accent2);
+      border: none; border-radius: 50%; display: none;
+      align-items: center; justify-content: center;
+      color: var(--bg); font-size: 1.5rem; cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,168,255,0.4);
+      transition: opacity var(--transition);
+      z-index: 999;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative; height: 60vh; min-height: 400px;
+      background: url("assets/consu.jpg") center/cover no-repeat;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+    }
+    .hero::after {
+      content: ""; position: absolute; inset: 0;
+      background: rgba(0,0,0,0.5); z-index: 0;
+    }
+    .hero .content {
+      position: relative; z-index: 1; max-width: 700px; padding: 0 1rem;
+      animation: fadeInUp .8s ease both;
+    }
+    .hero h1 {
+      font-size: 3rem; font-weight: 800; margin-bottom: .5rem;
+    }
+    .hero p {
+      font-size: 1.2rem; margin-bottom: 1.5rem;
+    }
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: none;}
+    }
+
+    /* STEPS */
+    .steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 2rem; max-width: 1000px; margin: 3rem auto; padding: 0 1rem;
+    }
+    .step {
+      background: var(--section); padding: 2rem; border-radius: var(--radius);
+      text-align: center; transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .step:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,168,255,0.3);
+    }
+    .step i {
+      font-size: 2rem; color: var(--accent2); margin-bottom: 1rem;
+    }
+    .step h3 {
+      font-size: 1.25rem; margin-bottom: .5rem; font-weight: 600;
+    }
+    .step p { font-size: .95rem; color: #ccc; }
+
+    /* FORM */
+    main {
+      max-width: 700px; margin: 2rem auto; padding: 0 1rem;
+    }
+    .form-card {
+      background: var(--section); border-radius: var(--radius);
+      padding: 2rem; box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      animation: fadeInUp .8s ease both;
+    }
+    .form-group {
+      position: relative; margin-bottom: 1.5rem;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%; padding: 1rem .75rem;
+      background: rgba(255,255,255,0.1); border: none;
+      border-radius: var(--radius); color: #fff;
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      background: rgba(255,255,255,0.2);
+      box-shadow: 0 0 0 3px rgba(0,168,255,0.3);
+      outline: none;
+    }
+    .form-group label {
+      position: absolute; top: -0.6rem; left: 1rem;
+      background: var(--section); padding: 0 .25rem;
+      font-size: .9rem; color: #ccc;
+    }
+    button[type="submit"] {
+      width: 100%; padding: 1rem; font-size: 1.1rem;
+      background: var(--accent1); color: var(--bg);
+      border: none; border-radius: var(--radius); cursor: pointer;
+      transition: transform var(--transition), background var(--transition);
+    }
+    button[type="submit"]:hover {
+      transform: translateY(-2px); background: var(--accent2);
+    }
+
+    /* TESTIMONIALS */
+    .testimonial-wrap {
+      position: relative; max-width: 800px; margin: 3rem auto;
+      overflow: hidden; border-radius: var(--radius);
+    }
+    .slides {
+      display: flex; transition: transform .5s ease;
+    }
+    .slide {
+      min-width: 100%; padding: 2rem; background: var(--section);
+      text-align: center; color: #ddd;
+    }
+    .slide p {
+      font-style: italic; margin-bottom: 1rem; font-size: 1.05rem;
+    }
+    .slide h4 {
+      color: var(--accent1); font-weight: 600;
+    }
+    .slider-nav {
+      position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%);
+      display: flex; gap: .5rem;
+    }
+    .slider-nav button {
+      width: 12px; height: 12px; background: rgba(255,255,255,0.5);
+      border: none; border-radius: 50%; cursor: pointer;
+      transition: background var(--transition);
+    }
+    .slider-nav button.active,
+    .slider-nav button:hover {
+      background: var(--accent2);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 2rem 1rem;
+      color: rgba(255,255,255,0.6);
+    }
+  </style>
+</head>
+<body data-theme="light">
+
+ 
+
+
+  <!-- Navbar -->
+  <nav data-aos="fade-down">
+    <div class="logo">STORRSEC</div>
+    <ul class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html" >Solutions</a>
+      <a href="consultation.html" class="active">Services</a>
+      <a href="about.html">Company</a>
+      <a href="subscribe.html">Subscribe</a>
+    </ul>
+    <div class="nav-right">
+      <i class="fas fa-search nav-search"></i>
+      <button class="btn-login" onclick="location.href='login.html'">Login</button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" data-aos="fade-up">
+    <div class="content">
+      <h1>Book Your Free Consultation</h1>
+      <p>Let’s tailor a cybersecurity strategy for your organization. Fill out the form and we’ll reach out within 24 hours.</p>
+    </div>
+  </section>
+
+  <!-- Steps -->
+  <div class="steps" data-aos="fade-up">
+    <div class="step"><i class="fas fa-paper-plane"></i><h3>Submit Form</h3><p>Tell us about your needs.</p></div>
+    <div class="step"><i class="fas fa-user-check"></i><h3>Get Matched</h3><p>We assign your expert.</p></div>
+    <div class="step"><i class="fas fa-calendar-alt"></i><h3>Schedule Call</h3><p>Pick a time slot.</p></div>
+  </div>
+
+  <!-- Consultation Form -->
+  <main data-aos="fade-up">
+    <div class="form-card">
+      <form>
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input id="name" type="text" placeholder=" " required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input id="email" type="email" placeholder=" " required>
+        </div>
+        <div class="form-group">
+          <label for="company">Company</label>
+          <input id="company" type="text" placeholder=" ">
+        </div>
+        <div class="form-group">
+          <label for="details">Details</label>
+          <textarea id="details" rows="4" placeholder=" "></textarea>
+        </div>
+        <button type="submit">Request Consultation</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- Testimonials -->
+  <div class="testimonial-wrap" data-aos="fade-up">
+    <div class="slides">
+      <div class="slide"><p>"Quick, professional and thorough."</p><h4>— Alex R.</h4></div>
+      <div class="slide"><p>"Our go-to cybersecurity partner."</p><h4>— Maria S.</h4></div>
+      <div class="slide"><p>"Outstanding expertise and service."</p><h4>— James T.</h4></div>
+    </div>
+    <div class="slider-nav">
+      <button class="active"></button><button></button><button></button>
+    </div>
+  </div>
+
+  <!-- Footer & Back to Top -->
+  <footer data-aos="fade-up">© 2025 CY Cybersecurity • All rights reserved</footer>
+  <button id="backToTop" title="Back to top">↑</button>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ once:true, duration:800 });
+
+    // Theme toggle
+    const toggle = document.querySelector('.theme-toggle');
+    toggle.addEventListener('click', () => {
+      const next = document.body.dataset.theme==='light' ? 'dark' : 'light';
+      document.body.dataset.theme = next;
+      toggle.textContent = next==='light' ? '🌙' : '☀️';
+    });
+
+    // Testimonial slider
+    const slides = document.querySelector('.slides');
+    const dots   = document.querySelectorAll('.slider-nav button');
+    dots.forEach((dot,i) => dot.addEventListener('click', () => {
+      slides.style.transform = `translateX(-${100*i}%)`;
+      dots.forEach(d=>d.classList.remove('active'));
+      dot.classList.add('active');
+    }));
+
+    // Back to top
+    const bt = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      bt.style.display = window.scrollY>300 ? 'flex' : 'none';
+    });
+    bt.onclick = () => window.scrollTo({ top:0, behavior:'smooth' });
+  </script>
+</body>
+</html>
