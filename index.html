@@ -1,757 +1,920 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Free Consultation – Averon Studios</title>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-
-  <!-- Icons (Font Awesome - replace YOUR_KIT_ID if you use kit) -->
-  <script src="https://kit.fontawesome.com/YOUR_KIT_ID.js" crossorigin="anonymous"></script>
-
-  <!-- AOS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Averon Studios — Creative + Growth</title>
+  <meta name="description" content="Averon Studios is a social media + content agency. Strategy, content creation, community management, and reporting." />
+  <meta name="theme-color" content="#4b2a77" />
   <style>
     :root{
-      --bg: #fbfaf7;
-      --paper: #ffffff;
-      --ink: #121212;
-      --muted: rgba(18,18,18,.65);
-      --line: rgba(18,18,18,.12);
-      --shadow: 0 14px 40px rgba(18,18,18,.10);
-      --radius: 16px;
-
-      --accent: #111111; /* minimalist accent like Brand Capture vibe */
-      --accentSoft: rgba(17,17,17,.08);
-
-      --sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+      --bg:#fbf7ef;
+      --ink:#22232a;
+      --muted:#5b5e6a;
+      --card:#ffffff;
+      --border:rgba(0,0,0,.08);
+      --accent:#4b2a77;
+      --accent2:#6a46a4;
+      --shadow: 0 20px 50px rgba(0,0,0,.08);
+      --radius: 22px;
+      --radius2: 34px;
+      --max: 1160px;
     }
-
-    *{ box-sizing:border-box; margin:0; padding:0; }
-    html{ scroll-behavior:smooth; }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
-      font-family: var(--sans);
-      background: var(--bg);
-      color: var(--ink);
-      line-height: 1.65;
-      overflow-x:hidden;
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:var(--bg);
+      color:var(--ink);
     }
-    a{ color: inherit; text-decoration:none; }
-    img{ max-width:100%; display:block; }
-    .container{ max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+    img{max-width:100%; display:block}
+    a{color:inherit; text-decoration:none}
+    p{line-height:1.7; color:var(--muted); margin:0}
+    h1,h2,h3{margin:0}
+    .container{max-width:var(--max); margin:0 auto; padding:0 22px}
+    .section{padding:84px 0}
+    .kicker{letter-spacing:.14em; text-transform:uppercase; font-size:12px; color:var(--muted)}
+    .serif{font-family: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;}
+    .display{font-size: clamp(44px, 4.8vw, 74px); line-height: .98; font-weight: 700; letter-spacing: -0.02em;}
+    .h2{font-size: clamp(30px, 3vw, 44px); line-height: 1.1; font-weight: 700; letter-spacing:-0.02em;}
+    .h3{font-size: 20px; line-height:1.2; font-weight: 700;}
+    .small{font-size:14px}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
 
-    /* Top announcement (optional) */
+    /* Top mini bar */
     .topbar{
-      border-bottom: 1px solid var(--line);
-      background: rgba(255,255,255,.65);
+      font-size:13px;
+      color:var(--muted);
+      border-bottom:1px solid var(--border);
+      background:rgba(255,255,255,.35);
+    }
+    .topbar .row{
+      height:42px; display:flex; align-items:center; justify-content:space-between;
+      gap:12px;
+    }
+
+    header{
+      position:sticky; top:0; z-index:50;
+      background: rgba(251,247,239,.72);
       backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
     }
-    .topbar .container{
-      display:flex; gap:12px; align-items:center; justify-content:space-between;
-      padding: 10px 20px;
-      font-size: 14px;
-      color: var(--muted);
-    }
-    .topbar a{
-      border-bottom: 1px solid rgba(18,18,18,.25);
-    }
+    .nav{display:flex; align-items:center; justify-content:space-between; height:78px;}
+    .brand{display:flex; align-items:center; gap:12px;}
+    .brand .mark{width:44px; height:44px}
+    .brand .name{font-weight:800; letter-spacing:.01em}
+    .brand .tag{font-size:12px; color:var(--muted); margin-top:2px}
 
-    /* NAV */
-    nav{
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(251,250,247,.72);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--line);
-    }
-    .nav-inner{
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 16px 0;
-      gap: 18px;
-    }
-    .brand{
-      display:flex; align-items:baseline; gap:10px;
-      letter-spacing: .2px;
-    }
-    .brand .mark{
-      font-family: var(--serif);
-      font-weight: 700;
-      font-size: 22px;
-      line-height: 1;
-    }
-    .brand .tag{
-      font-size: 13px;
-      color: var(--muted);
-      display:none;
-    }
-    @media (min-width: 900px){
-      .brand .tag{ display:inline; }
-    }
+    .navlinks{display:flex; align-items:center; gap:22px;}
+    .navlinks a{font-size:14px; color:var(--muted); padding:10px 8px; border-radius:12px;}
+    .navlinks a.active{color:var(--ink); font-weight:700; background:rgba(255,255,255,.45); border:1px solid var(--border);}
 
-    .nav-links{
-      display:flex; align-items:center; gap: 18px;
-      list-style:none;
-    }
-    .nav-links a{
-      font-size: 14px;
-      font-weight: 600;
-      color: rgba(18,18,18,.82);
-      padding: 8px 8px;
-      border-radius: 10px;
-      transition: background .2s ease, color .2s ease;
-    }
-    .nav-links a:hover{
-      background: var(--accentSoft);
-      color: var(--ink);
-    }
-    .nav-actions{
-      display:flex; align-items:center; gap: 10px;
-    }
+    .cta{display:flex; align-items:center; gap:10px;}
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
-      gap: 10px;
-      padding: 11px 14px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 14px;
-      border: 1px solid var(--line);
+      padding:12px 16px;
+      border-radius: 14px;
+      border:1px solid var(--border);
       background: transparent;
-      transition: transform .18s ease, background .18s ease, border-color .18s ease;
-      cursor: pointer;
-      white-space: nowrap;
+      font-weight:700;
+      font-size:14px;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+      cursor:pointer;
     }
-    .btn:hover{ transform: translateY(-1px); }
-    .btn-primary{
+    .btn:hover{transform: translateY(-1px)}
+    .btn.primary{
       background: var(--accent);
-      color: #fff;
-      border-color: var(--accent);
+      color:white;
+      border-color: transparent;
+      box-shadow: 0 16px 38px rgba(75,42,119,.25);
     }
-    .btn-primary:hover{ background: #000; }
-    .btn-ghost{
-      background: rgba(255,255,255,.65);
-    }
+    .btn.primary:hover{box-shadow:0 18px 44px rgba(75,42,119,.33)}
+    .btn.ghost{background:rgba(255,255,255,.45)}
+    .btn.pill{border-radius:999px; padding:10px 14px}
 
-    /* Mobile menu */
-    .burger{ display:none; }
-    @media (max-width: 860px){
-      .nav-links{ display:none; }
-      .burger{ display:inline-flex; }
-    }
-    .drawer{
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.45);
-      display:none;
-      z-index: 2000;
-    }
-    .drawer.open{ display:block; }
-    .drawer-panel{
-      position:absolute;
-      right: 0;
-      top: 0;
-      height: 100%;
-      width: min(420px, 92vw);
-      background: var(--paper);
-      box-shadow: var(--shadow);
-      padding: 18px;
-      display:flex;
-      flex-direction:column;
-      gap: 16px;
-    }
-    .drawer-head{
-      display:flex; justify-content:space-between; align-items:center;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 12px;
-    }
-    .drawer-links{
-      display:flex; flex-direction:column;
-      gap: 6px;
-      padding-top: 4px;
-    }
-    .drawer-links a{
-      padding: 12px 12px;
-      border-radius: 12px;
-      font-weight: 700;
-      color: rgba(18,18,18,.85);
-      background: rgba(18,18,18,.03);
-    }
-    .drawer-links a:hover{ background: rgba(18,18,18,.06); }
+    .mobileToggle{display:none}
+    .mobilePanel{display:none}
 
-    /* HERO */
-    .hero{
-      padding: 52px 0 28px;
-    }
-    .hero-grid{
+    .hero{padding:58px 0 24px;}
+    .heroGrid{
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 28px;
-      align-items:start;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 42px;
+      align-items:center;
     }
-    @media (max-width: 960px){
-      .hero-grid{ grid-template-columns: 1fr; }
+    .heroCopy .lead{margin-top:18px; max-width: 52ch; font-size:16px;}
+    .heroActions{display:flex; gap:12px; margin-top:22px; flex-wrap:wrap}
+    .pills{display:flex; gap:10px; margin-top:18px; flex-wrap:wrap}
+    .pill{
+      font-size:12px; color:var(--muted);
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.55);
+      padding:8px 10px;
+      border-radius: 999px;
+    }
+    .heroCard{
+      border-radius: var(--radius2);
+      background: linear-gradient(180deg, rgba(75,42,119,.08), rgba(75,42,119,.02));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .heroMedia{
+      aspect-ratio: 4 / 5;
+      min-height: 420px;
+      position:relative;
+      background:
+        radial-gradient(800px 500px at 30% 20%, rgba(106,70,164,.35), transparent),
+        radial-gradient(900px 700px at 60% 60%, rgba(75,42,119,.35), transparent),
+        linear-gradient(135deg, rgba(75,42,119,.18), rgba(0,0,0,0));
+    }
+    .heroMedia .badge{
+      position:absolute; left:18px; bottom:18px;
+      background: rgba(255,255,255,.78);
+      border:1px solid var(--border);
+      border-radius: 999px;
+      padding:10px 12px;
+      font-weight:800;
+      font-size:13px;
+    }
+    .heroMedia .miniCard{
+      position:absolute; right:18px; bottom:18px;
+      width:min(360px, calc(100% - 36px));
+      background: rgba(255,255,255,.84);
+      border:1px solid var(--border);
+      border-radius: 18px;
+      padding:14px;
+      box-shadow: 0 18px 44px rgba(0,0,0,.10);
+    }
+    .heroMedia .miniCard h3{font-size:16px; margin-bottom:6px;}
+    .chips{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;}
+    .chip{
+      font-size:12px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.85);
+      padding:8px 10px;
+      border-radius: 999px;
+      color:var(--muted);
+      font-weight:700;
     }
 
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 700;
-      color: rgba(18,18,18,.72);
-      letter-spacing: .3px;
-      background: rgba(255,255,255,.7);
-      border: 1px solid var(--line);
-      padding: 8px 12px;
-      border-radius: 999px;
+    .grid3{display:grid; gap:18px; grid-template-columns: repeat(3, minmax(0,1fr));}
+    .card{
+      background: rgba(255,255,255,.65);
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding:22px;
+      box-shadow: 0 14px 34px rgba(0,0,0,.06);
+    }
+    .iconCircle{
+      width:62px; height:62px; border-radius: 999px;
+      background: rgba(0,0,0,.88);
+      display:grid; place-items:center;
       margin-bottom: 14px;
     }
-    .eyebrow .dot{
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--ink);
-      opacity: .85;
-    }
-    h1{
-      font-family: var(--serif);
-      font-weight: 700;
-      font-size: clamp(34px, 4vw, 52px);
-      line-height: 1.05;
-      letter-spacing: -0.6px;
-    }
-    .lead{
-      margin-top: 14px;
-      max-width: 60ch;
-      font-size: 16px;
-      color: var(--muted);
-    }
-    .hero-ctas{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 10px;
+    .iconCircle svg{width:30px; height:30px; stroke:#fff}
+    .card p{margin-top:10px}
+    .card .more{margin-top:16px; display:inline-flex; gap:8px; align-items:center; color:var(--accent); font-weight:800}
+
+    .servicesGrid{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 16px;
       margin-top: 18px;
     }
-
-    /* Subtle “image” card like Brand Capture (use your own image path) */
-    .hero-card{
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
+    .serviceTile{
+      background: rgba(255,255,255,.70);
+      border:1px solid var(--border);
+      border-radius: 26px;
       overflow:hidden;
+      box-shadow: 0 14px 34px rgba(0,0,0,.06);
+      display:flex; flex-direction:column;
+      min-height: 260px;
+    }
+    .serviceTile .thumb{
+      height: 120px;
+      background: linear-gradient(180deg, rgba(75,42,119,.2), rgba(75,42,119,.03));
+      position:relative;
+    }
+    .serviceTile .thumb::after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(380px 240px at 35% 30%, rgba(255,255,255,.25), transparent);
+    }
+    .serviceTile .meta{padding:16px 16px 18px}
+    .serviceTile h3{font-size:16px}
+    .serviceTile p{font-size:13px; margin-top:8px}
+
+    .split{display:grid; gap:22px; grid-template-columns: 1fr 1fr; align-items:start;}
+    .panel{
+      border-radius: var(--radius2);
+      background: rgba(34,35,42,.92);
+      color:#fff;
+      padding: 28px;
+      border:1px solid rgba(255,255,255,.08);
       box-shadow: var(--shadow);
     }
-    .hero-media{
-      height: 220px;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.04)),
-        url("assets/consu.jpg") center/cover no-repeat;
-    }
-    .hero-card-body{
-      padding: 16px;
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-    }
-    .hero-card-body h3{
-      font-size: 16px;
-      font-weight: 800;
-      letter-spacing: -0.2px;
-    }
-    .hero-card-body p{
-      font-size: 14px;
-      color: var(--muted);
-    }
-    .meta{
-      display:flex; flex-wrap:wrap; gap: 8px;
-    }
-    .pill{
-      font-size: 12px;
-      font-weight: 800;
-      padding: 8px 10px;
-      border-radius: 999px;
-      background: rgba(18,18,18,.05);
-      border: 1px solid var(--line);
-      color: rgba(18,18,18,.75);
-    }
-
-    /* STEPS */
-    .section{
-      padding: 34px 0;
-    }
-    .section h2{
-      font-family: var(--serif);
-      font-size: 30px;
-      letter-spacing: -0.4px;
-      margin-bottom: 8px;
-    }
-    .section .sub{
-      color: var(--muted);
-      max-width: 72ch;
-    }
-    .steps{
-      margin-top: 18px;
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-    @media (max-width: 900px){
-      .steps{ grid-template-columns: 1fr; }
-    }
-    .step{
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 18px;
-      box-shadow: 0 10px 26px rgba(18,18,18,.06);
-      transition: transform .18s ease;
-    }
-    .step:hover{ transform: translateY(-2px); }
-    .step .icon{
-      width: 40px; height: 40px;
-      border-radius: 12px;
-      display:grid; place-items:center;
-      background: rgba(18,18,18,.06);
-      border: 1px solid var(--line);
-      margin-bottom: 12px;
-      font-size: 16px;
-      color: rgba(18,18,18,.85);
-    }
-    .step h3{ font-size: 16px; font-weight: 900; letter-spacing: -0.2px; }
-    .step p{ font-size: 14px; color: var(--muted); margin-top: 6px; }
-
-    /* FORM + SIDEBAR */
-    .grid{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 18px;
-      align-items:start;
-      margin-top: 18px;
-    }
-    @media (max-width: 980px){
-      .grid{ grid-template-columns: 1fr; }
-    }
-    .card{
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 18px;
-    }
-    .card h3{
-      font-size: 18px;
-      font-weight: 900;
-      letter-spacing: -0.2px;
-      margin-bottom: 10px;
-    }
-    .card p{ color: var(--muted); font-size: 14px; }
-
-    form{ margin-top: 14px; display:grid; gap: 12px; }
-    .row{ display:grid; gap: 12px; grid-template-columns: 1fr 1fr; }
-    @media (max-width: 620px){ .row{ grid-template-columns: 1fr; } }
-
-    label{
-      font-size: 12px;
-      font-weight: 800;
-      color: rgba(18,18,18,.78);
-      margin-bottom: 6px;
-      display:block;
-    }
+    .panel p{color:rgba(255,255,255,.78)}
+    .form{display:grid; gap:12px; margin-top: 14px;}
+    .row2{display:grid; gap:12px; grid-template-columns: 1fr 1fr}
     input, textarea, select{
-      width: 100%;
-      border: 1px solid var(--line);
-      background: rgba(18,18,18,.02);
-      border-radius: 14px;
+      width:100%;
       padding: 12px 12px;
-      font-family: var(--sans);
-      font-size: 14px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.92);
       outline:none;
-      transition: box-shadow .18s ease, background .18s ease, border-color .18s ease;
+      font-size:14px;
     }
-    textarea{ min-height: 120px; resize: vertical; }
-    input:focus, textarea:focus, select:focus{
-      border-color: rgba(18,18,18,.25);
-      background: rgba(18,18,18,.03);
-      box-shadow: 0 0 0 4px rgba(18,18,18,.08);
-    }
-    .form-actions{
-      display:flex; gap: 10px; flex-wrap:wrap; align-items:center;
-      margin-top: 6px;
-    }
-    .help{
-      font-size: 12px;
-      color: var(--muted);
-    }
+    textarea{min-height:120px; resize:vertical}
+    label{font-size:12px; color:rgba(255,255,255,.78)}
+    .form .btn{border-radius:12px; width:max-content}
 
-    /* Testimonials */
-    .testimonial-wrap{
-      margin-top: 16px;
+    .workGrid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .workCard{
+      border-radius: 26px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.70);
+      box-shadow: 0 14px 34px rgba(0,0,0,.06);
       overflow:hidden;
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
-      background: var(--paper);
-      box-shadow: 0 14px 40px rgba(18,18,18,.08);
     }
-    .slides{
-      display:flex;
-      transition: transform .45s ease;
+    .workCard .img{
+      height: 170px;
+      background:
+        radial-gradient(380px 220px at 30% 30%, rgba(106,70,164,.35), transparent),
+        radial-gradient(420px 260px at 70% 70%, rgba(75,42,119,.28), transparent),
+        linear-gradient(135deg, rgba(0,0,0,.06), rgba(0,0,0,0));
     }
-    .slide{
-      min-width: 100%;
-      padding: 20px;
-    }
-    .quote{
-      font-family: var(--serif);
-      font-size: 20px;
-      line-height: 1.3;
-      letter-spacing: -0.2px;
-    }
-    .who{
-      margin-top: 10px;
-      font-size: 14px;
-      color: var(--muted);
-      font-weight: 700;
-    }
-    .slider-nav{
-      display:flex;
-      gap: 8px;
-      padding: 12px 16px 16px;
-    }
-    .slider-nav button{
-      width: 8px; height: 8px;
+    .workCard .body{padding:16px}
+    .statRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;}
+    .stat{
+      font-size:12px; font-weight:800; color:var(--muted);
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.85);
+      padding:8px 10px;
       border-radius: 999px;
-      border: none;
-      background: rgba(18,18,18,.25);
-      cursor:pointer;
-      transition: transform .18s ease, background .18s ease;
-    }
-    .slider-nav button.active{
-      background: rgba(18,18,18,.85);
-      transform: scale(1.2);
     }
 
-    /* Footer */
     footer{
-      padding: 34px 0;
-      color: rgba(18,18,18,.6);
-      border-top: 1px solid var(--line);
-      margin-top: 34px;
-      font-size: 14px;
+      padding: 44px 0;
+      background: linear-gradient(180deg, rgba(75,42,119,.14), rgba(75,42,119,.26));
+      border-top: 1px solid rgba(0,0,0,.08);
     }
-    .footer-grid{
-      display:flex; flex-wrap:wrap; gap: 12px; justify-content:space-between; align-items:center;
+    .footerGrid{display:grid; grid-template-columns: 1.2fr .8fr .8fr; gap: 22px; align-items:start;}
+    .footerCard{
+      background: rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.22);
+      border-radius: 22px;
+      padding: 18px;
     }
-    .links{
-      display:flex; gap: 14px; flex-wrap:wrap;
+    .footerCard p{color:rgba(255,255,255,.85)}
+    .footerLinks a{display:block; padding:6px 0; color:rgba(255,255,255,.9); font-size:14px}
+    .social{display:flex; gap:10px; margin-top: 12px}
+    .social a{
+      width:40px; height:40px; border-radius: 999px;
+      display:grid; place-items:center;
+      background: rgba(0,0,0,.2);
+      border:1px solid rgba(255,255,255,.18);
     }
-    .links a{ border-bottom: 1px solid rgba(18,18,18,.22); }
+    .social svg{width:18px; height:18px; fill:#fff}
 
-    /* Back to top */
-    #backToTop{
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      width: 44px;
-      height: 44px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.8);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 12px 30px rgba(18,18,18,.12);
-      display:none;
-      cursor:pointer;
-      font-weight: 900;
+    .fadeUp{opacity:0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease}
+    .fadeUp.in{opacity:1; transform:none}
+
+    /* Small helper: section anchors won't hide under sticky header */
+    section[id]{scroll-margin-top: 110px;}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .heroGrid{grid-template-columns: 1fr; }
+      .heroMedia{min-height: 360px}
+      .grid3{grid-template-columns: 1fr}
+      .servicesGrid{grid-template-columns: 1fr 1fr}
+      .workGrid{grid-template-columns: 1fr}
+      .split{grid-template-columns: 1fr}
+      .footerGrid{grid-template-columns: 1fr}
+      .navlinks{display:none}
+      .mobileToggle{display:inline-flex}
+      .mobilePanel{
+        display:block;
+        border-top:1px solid var(--border);
+        padding: 12px 0 18px;
+      }
+      .mobilePanel a{display:block; padding:12px 0; color:var(--muted)}
     }
   </style>
 </head>
 
 <body>
 
-  <div class="topbar">
-    <div class="container">
-      <div>Free discovery call • response within 24 hours</div>
+<!-- Inline SVG symbols (icons + brand mark) -->
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute; width:0; height:0; overflow:hidden;">
+  <symbol id="brandmark" viewBox="0 0 96 96">
+    <defs>
+      <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0" stop-color="#4b2a77"/>
+        <stop offset="1" stop-color="#6a46a4"/>
+      </linearGradient>
+    </defs>
+    <circle cx="48" cy="48" r="46" fill="url(#g)"/>
+    <circle cx="48" cy="48" r="34" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2"/>
+    <path d="M33 58c0-10 7-17 17-17h13v7H50c-6 0-10 4-10 10s4 10 10 10h13v7H50c-10 0-17-7-17-17Z" fill="#fff"/>
+  </symbol>
+
+  <symbol id="i-check" viewBox="0 0 24 24">
+    <path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M7 4h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3Z" fill="none" stroke="currentColor" stroke-width="2" opacity=".55"/>
+  </symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24">
+    <path d="M12 21s-7-4.6-9.3-9A5.6 5.6 0 0 1 12 5.4a5.6 5.6 0 0 1 9.3 6.6C19 16.4 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-target" viewBox="0 0 24 24">
+    <path d="M21 12a9 9 0 1 1-9-9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M22 2 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M16 2h6v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+  </symbol>
+
+  <symbol id="s-instagram" viewBox="0 0 24 24">
+    <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm6-1.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/>
+  </symbol>
+  <symbol id="s-youtube" viewBox="0 0 24 24">
+    <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.6 4.6 12 4.6 12 4.6s-5.6 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.9.5 7.5.5 7.5.5s5.6 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8ZM10 15.5v-7l6 3.5-6 3.5Z"/>
+  </symbol>
+  <symbol id="s-tiktok" viewBox="0 0 24 24">
+    <path d="M15 3c.7 3.4 2.7 5.4 6 6v4c-2.1-.1-3.9-.7-5.5-1.8V17a6 6 0 1 1-6-6c.4 0 .7 0 1 .1V15a2.2 2.2 0 1 0 2.5 2.2V3h2Z"/>
+  </symbol>
+</svg>
+
+<div class="topbar">
+  <div class="container row">
+    <div>Free discovery call • response within 24 hours</div>
+    <div><a href="mailto:hello@averonstudios.com" class="mono">hello@averonstudios.com</a></div>
+  </div>
+</div>
+
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home" aria-label="Averon Studios Home">
+      <svg class="mark" aria-hidden="true"><use href="#brandmark"></use></svg>
       <div>
-        <a href="mailto:hello@averonstudios.com">hello@averonstudios.com</a>
+        <div class="name">Averon Studios <span style="font-weight:650;color:var(--muted)">• Creative + Growth</span></div>
+        <div class="tag">Social + Content Agency</div>
       </div>
+    </a>
+
+    <nav class="navlinks" aria-label="Primary">
+      <a href="#home" data-nav="home" class="active">Home</a>
+      <a href="#services" data-nav="services">Services</a>
+      <a href="#consultation" data-nav="consultation">Consultation</a>
+      <a href="#work" data-nav="work">Our Work</a>
+      <a href="#about" data-nav="about">About</a>
+      <a href="#careers" data-nav="careers">Careers</a>
+      <a href="#contact" data-nav="contact">Contact</a>
+    </nav>
+
+    <div class="cta">
+      <button class="btn mobileToggle" data-mobile-toggle aria-expanded="false" aria-controls="mobilePanel">Menu</button>
+      <a class="btn pill" href="#consultation">Login</a>
+      <a class="btn primary" href="#contact">Work With Us</a>
     </div>
   </div>
 
-  <nav>
-    <div class="container">
-      <div class="nav-inner">
-        <a class="brand" href="index.html" aria-label="Averon Studios Home">
-          <span class="mark">Averon Studios</span>
-          <span class="tag">• Creative + Growth</span>
-        </a>
-
-        <ul class="nav-links" aria-label="Primary">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="consultation.html" aria-current="page">Consultation</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="subscribe.html">Subscribe</a></li>
-        </ul>
-
-        <div class="nav-actions">
-          <button class="btn btn-ghost burger" id="openMenu" aria-label="Open menu">
-            <i class="fas fa-bars"></i>
-          </button>
-          <button class="btn btn-ghost" onclick="location.href='login.html'">
-            <i class="fas fa-user"></i> Login
-          </button>
-          <button class="btn btn-primary" onclick="document.getElementById('consult').scrollIntoView({behavior:'smooth'})">
-            Work With Us
-          </button>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Mobile Drawer -->
-  <div class="drawer" id="drawer" aria-hidden="true">
-    <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Menu">
-      <div class="drawer-head">
-        <div class="brand">
-          <span class="mark">Averon Studios</span>
-        </div>
-        <button class="btn btn-ghost" id="closeMenu" aria-label="Close menu">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-
-      <div class="drawer-links">
-        <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a href="consultation.html">Consultation</a>
-        <a href="about.html">About</a>
-        <a href="subscribe.html">Subscribe</a>
-      </div>
-
-      <div style="margin-top:auto; display:grid; gap:10px;">
-        <button class="btn btn-primary" onclick="location.href='consultation.html#consult'">Work With Us</button>
-        <button class="btn btn-ghost" onclick="location.href='login.html'">Login</button>
-      </div>
-    </div>
+  <div class="container mobilePanel" id="mobilePanel" data-mobile-panel data-open="false" aria-label="Mobile">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#consultation">Consultation</a>
+    <a href="#work">Our Work</a>
+    <a href="#about">About</a>
+    <a href="#careers">Careers</a>
+    <a href="#contact">Contact</a>
   </div>
+</header>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="container">
-      <div class="hero-grid">
-        <div data-aos="fade-up">
-          <div class="eyebrow"><span class="dot"></span> Free Consultation</div>
-          <h1>Let’s build a clear plan that turns your brand into growth.</h1>
-          <p class="lead">
-            Tell us what you’re working on. We’ll review your goals, recommend next steps, and share a simple roadmap you can execute immediately.
-          </p>
+<main>
+  <!-- HOME -->
+  <section id="home" class="hero">
+    <div class="container heroGrid">
+      <div class="heroCopy fadeUp">
+        <span class="btn pill" style="cursor:default">● Free Consultation</span>
+        <h1 class="serif display" style="margin-top:14px">
+          Let’s build a clear plan<br/>that turns your brand<br/>into growth.
+        </h1>
+        <p class="lead">
+          Tell us what you’re working on. We’ll review your goals, recommend next steps,
+          and share a simple roadmap you can execute immediately.
+        </p>
 
-          <div class="hero-ctas">
-            <button class="btn btn-primary" onclick="document.getElementById('consult').scrollIntoView({behavior:'smooth'})">
-              Request a Call
-            </button>
-            <a class="btn btn-ghost" href="services.html">Explore Services</a>
-          </div>
+        <div class="heroActions">
+          <a class="btn primary" href="#consultation">Request a Call</a>
+          <a class="btn ghost" href="#services">Explore Services</a>
         </div>
 
-        <aside class="hero-card" data-aos="fade-up" data-aos-delay="80">
-          <div class="hero-media" aria-label="Averon Studios consultation"></div>
-          <div class="hero-card-body">
-            <h3>What you’ll get</h3>
+        <div class="pills">
+          <span class="pill">30–45 mins</span>
+          <span class="pill">Action plan</span>
+          <span class="pill">No pressure</span>
+          <span class="pill">Creator-first</span>
+        </div>
+      </div>
+
+      <div class="heroCard fadeUp">
+        <div class="heroMedia">
+          <div class="badge">Premium creative → real results</div>
+          <div class="miniCard">
+            <h3 class="serif">What you’ll get</h3>
             <p>Clarity, focus, and a next-step plan — without the agency fluff.</p>
-            <div class="meta">
-              <span class="pill">30–45 mins</span>
-              <span class="pill">Action plan</span>
-              <span class="pill">No pressure</span>
+            <div class="chips">
+              <span class="chip">Hooks + angles</span>
+              <span class="chip">Offer clarity</span>
+              <span class="chip">Content calendar</span>
             </div>
           </div>
-        </aside>
+        </div>
       </div>
     </div>
-  </header>
 
-  <!-- Steps -->
-  <section class="section" aria-label="Process">
-    <div class="container" data-aos="fade-up">
-      <h2>How it works</h2>
-      <p class="sub">A simple process designed to keep you moving fast — and keep everything easy.</p>
+    <!-- How it works -->
+    <div class="container" style="margin-top:44px">
+      <h2 class="serif h2 fadeUp">How it works</h2>
+      <p class="fadeUp" style="margin-top:10px; max-width:70ch">
+        A simple process designed to keep you moving fast — and keep everything easy.
+      </p>
 
-      <div class="steps">
-        <div class="step">
-          <div class="icon"><i class="fas fa-paper-plane"></i></div>
-          <h3>Submit the form</h3>
-          <p>Share your goals and what’s currently not working.</p>
-        </div>
-        <div class="step">
-          <div class="icon"><i class="fas fa-user-check"></i></div>
-          <h3>Get matched</h3>
-          <p>We route you to the right specialist for your situation.</p>
-        </div>
-        <div class="step">
-          <div class="icon"><i class="fas fa-calendar-alt"></i></div>
-          <h3>Book a time</h3>
-          <p>Choose a slot. We’ll come prepared with a plan.</p>
-        </div>
+      <div class="grid3" style="margin-top:22px">
+        <article class="card fadeUp">
+          <div class="iconCircle" aria-hidden="true"><svg><use href="#i-check"></use></svg></div>
+          <h3 class="serif h3">Audit + Goals</h3>
+          <p>We review your current content, positioning, and offers. You leave with clarity on what to fix first.</p>
+          <div class="more">Step 1 →</div>
+        </article>
+        <article class="card fadeUp">
+          <div class="iconCircle" aria-hidden="true"><svg><use href="#i-target"></use></svg></div>
+          <h3 class="serif h3">Plan + System</h3>
+          <p>We build a roadmap: content pillars, hooks, cadence, and a workflow that fits your capacity.</p>
+          <div class="more">Step 2 →</div>
+        </article>
+        <article class="card fadeUp">
+          <div class="iconCircle" aria-hidden="true"><svg><use href="#i-heart"></use></svg></div>
+          <h3 class="serif h3">Execute + Grow</h3>
+          <p>Production, posting, community, reporting. We optimize monthly based on what performs and converts.</p>
+          <div class="more">Step 3 →</div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- Form -->
-  <section class="section" id="consult" aria-label="Consultation form">
+  <!-- SERVICES -->
+  <section id="services" class="section">
     <div class="container">
-      <div class="grid">
-        <div class="card" data-aos="fade-up">
-          <h3>Request your free consultation</h3>
-          <p>We’ll respond within 24 hours. If you prefer email, message us at <a href="mailto:hello@averonstudios.com" style="border-bottom:1px solid rgba(18,18,18,.25)">hello@averonstudios.com</a>.</p>
+      <div class="kicker fadeUp">Services</div>
+      <h2 class="serif h2 fadeUp" style="margin-top:10px">Everything you need to show up, look premium, and convert.</h2>
+      <p class="fadeUp" style="margin-top:12px; max-width:75ch">
+        Choose a package or build a custom plan. We keep marketing simple: strategy → production → publish → report.
+      </p>
 
-          <form id="consultForm">
-            <div class="row">
-              <div>
-                <label for="name">Full name</label>
-                <input id="name" name="name" type="text" autocomplete="name" required />
-              </div>
-              <div>
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" autocomplete="email" required />
-              </div>
-            </div>
+      <div class="servicesGrid fadeUp" aria-label="Services grid">
+        <div class="serviceTile">
+          <div class="thumb"></div>
+          <div class="meta">
+            <h3 class="serif">Strategy Sprint</h3>
+            <p>Positioning, hooks, content pillars, and a 30-day calendar tied to your offer.</p>
+          </div>
+        </div>
+        <div class="serviceTile">
+          <div class="thumb"></div>
+          <div class="meta">
+            <h3 class="serif">Content Creation</h3>
+            <p>Filming direction + editing for Reels/Shorts/TikTok with a premium look.</p>
+          </div>
+        </div>
+        <div class="serviceTile">
+          <div class="thumb"></div>
+          <div class="meta">
+            <h3 class="serif">Social Management</h3>
+            <p>Posting, captions, scheduling, and analytics — consistent brand voice.</p>
+          </div>
+        </div>
+        <div class="serviceTile">
+          <div class="thumb"></div>
+          <div class="meta">
+            <h3 class="serif">Community + Reporting</h3>
+            <p>Engagement strategy + monthly insights that connect to actual business outcomes.</p>
+          </div>
+        </div>
+      </div>
 
-            <div class="row">
-              <div>
-                <label for="company">Company / Brand</label>
-                <input id="company" name="company" type="text" autocomplete="organization" />
-              </div>
-              <div>
-                <label for="focus">Primary focus</label>
-                <select id="focus" name="focus">
-                  <option value="Brand strategy">Brand strategy</option>
-                  <option value="Content + social">Content + social</option>
-                  <option value="Website / landing pages">Website / landing pages</option>
-                  <option value="Paid ads">Paid ads</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-            </div>
+      <div class="heroActions fadeUp" style="margin-top:22px">
+        <a class="btn primary" href="#contact">Request a Proposal</a>
+        <a class="btn" href="#work">See Work</a>
+      </div>
+    </div>
+  </section>
 
+  <!-- CONSULTATION -->
+  <section id="consultation" class="section">
+    <div class="container split">
+      <div class="panel fadeUp">
+        <div class="kicker">Free Consultation</div>
+        <h2 class="serif h2" style="margin-top:10px">Get a clear plan in 30–45 minutes.</h2>
+        <p style="margin-top:10px; max-width:60ch">
+          We’ll identify what to fix first, what to double down on, and how to convert more from your content.
+          If we’re a fit, we’ll recommend the simplest next step.
+        </p>
+        <p class="small" style="margin-top:12px; color:rgba(255,255,255,.72)">
+          Want to use Calendly? Replace the form with your embed code.
+        </p>
+      </div>
+
+      <div class="panel fadeUp">
+        <!-- Replace Formspree endpoint with yours -->
+        <form class="form" action="https://formspree.io/f/XXXXXXXX" method="POST">
+          <div class="row2">
             <div>
-              <label for="details">What are you trying to achieve?</label>
-              <textarea id="details" name="details" placeholder="Example: We want more inbound leads, better conversion, and a clearer content strategy."></textarea>
+              <label for="c_first">First name</label>
+              <input id="c_first" name="firstName" autocomplete="given-name" required />
             </div>
-
-            <div class="form-actions">
-              <button class="btn btn-primary" type="submit">
-                Submit Request
-              </button>
-              <span class="help">By submitting, you agree we can contact you about your request.</span>
-            </div>
-          </form>
-        </div>
-
-        <aside data-aos="fade-up" data-aos-delay="80">
-          <div class="card">
-            <h3>What we’re best at</h3>
-            <p>
-              Clean creative, strong positioning, and marketing systems that actually convert.
-              If you’re unsure what you need, that’s okay — we’ll figure it out on the call.
-            </p>
-            <div style="margin-top:12px; display:grid; gap:10px;">
-              <div class="pill">Brand + message clarity</div>
-              <div class="pill">Content that feels human</div>
-              <div class="pill">Web experiences that convert</div>
-              <div class="pill">Simple metrics + reporting</div>
+            <div>
+              <label for="c_last">Last name</label>
+              <input id="c_last" name="lastName" autocomplete="family-name" required />
             </div>
           </div>
 
-          <div class="testimonial-wrap" data-aos="fade-up" data-aos-delay="140" style="margin-top: 16px;">
-            <div class="slides" id="slides">
-              <div class="slide">
-                <div class="quote">“Fast, thoughtful, and ridiculously easy to work with.”</div>
-                <div class="who">— Client, Creative Founder</div>
-              </div>
-              <div class="slide">
-                <div class="quote">“Our messaging got sharper — and leads started coming in.”</div>
-                <div class="who">— Client, Service Business</div>
-              </div>
-              <div class="slide">
-                <div class="quote">“The plan was clear and actionable. No fluff.”</div>
-                <div class="who">— Client, E-commerce Brand</div>
-              </div>
+          <div>
+            <label for="c_email">Email</label>
+            <input id="c_email" name="email" type="email" autocomplete="email" required />
+          </div>
+
+          <div>
+            <label for="c_brand">Brand / Company</label>
+            <input id="c_brand" name="brand" autocomplete="organization" required />
+          </div>
+
+          <div class="row2">
+            <div>
+              <label for="c_platform">Primary platform</label>
+              <select id="c_platform" name="platform">
+                <option>Instagram</option>
+                <option>YouTube</option>
+                <option>TikTok</option>
+                <option>Other</option>
+              </select>
             </div>
-            <div class="slider-nav" id="dots">
-              <button class="active" aria-label="Testimonial 1"></button>
-              <button aria-label="Testimonial 2"></button>
-              <button aria-label="Testimonial 3"></button>
+            <div>
+              <label for="c_handle">Handle</label>
+              <input id="c_handle" name="handle" placeholder="@yourbrand" />
             </div>
           </div>
-        </aside>
+
+          <div>
+            <label for="c_msg">What are you trying to achieve?</label>
+            <textarea id="c_msg" name="message" required></textarea>
+          </div>
+
+          <button class="btn primary" type="submit">Request a Call</button>
+          <p class="small" style="color:rgba(255,255,255,.68)">
+            By submitting, you agree to our <a href="#privacy" style="text-decoration:underline">privacy policy</a>.
+          </p>
+        </form>
       </div>
     </div>
   </section>
 
-  <footer>
+  <!-- WORK -->
+  <section id="work" class="section">
     <div class="container">
-      <div class="footer-grid">
-        <div>© <span id="year"></span> Averon Studios • All rights reserved</div>
-        <div class="links">
-          <a href="about.html">About</a>
-          <a href="services.html">Services</a>
-          <a href="mailto:hello@averonstudios.com">Contact</a>
-        </div>
+      <div class="kicker fadeUp">Our Work</div>
+      <h2 class="serif h2 fadeUp" style="margin-top:10px">Results you can feel.</h2>
+      <p class="fadeUp" style="margin-top:12px; max-width:78ch">
+        Swap these placeholders with your friend’s real creator work, before/after metrics, and testimonials.
+      </p>
+
+      <div class="workGrid fadeUp" aria-label="Portfolio grid">
+        <article class="workCard">
+          <div class="img"></div>
+          <div class="body">
+            <h3 class="serif h3">Local Restaurant Growth</h3>
+            <p>Content series + community engagement to increase bookings.</p>
+            <div class="statRow">
+              <span class="stat">+120% reach</span>
+              <span class="stat">+38% inquiries</span>
+              <span class="stat">4 weeks</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="workCard">
+          <div class="img"></div>
+          <div class="body">
+            <h3 class="serif h3">Creator Launch Campaign</h3>
+            <p>Hook strategy + editing system for a product drop.</p>
+            <div class="statRow">
+              <span class="stat">2.1M views</span>
+              <span class="stat">+19% CTR</span>
+              <span class="stat">Shorts + Reels</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="workCard">
+          <div class="img"></div>
+          <div class="body">
+            <h3 class="serif h3">Service Brand Reposition</h3>
+            <p>Offer clarity + new content pillars that convert.</p>
+            <div class="statRow">
+              <span class="stat">+44% leads</span>
+              <span class="stat">Better close rate</span>
+              <span class="stat">60 days</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="heroActions fadeUp" style="margin-top:22px">
+        <a class="btn primary" href="#contact">Work With Us</a>
+        <a class="btn" href="#services">View Services</a>
       </div>
     </div>
-  </footer>
+  </section>
 
-  <button id="backToTop" title="Back to top" aria-label="Back to top">↑</button>
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="container split">
+      <div class="fadeUp">
+        <div class="kicker">About</div>
+        <h2 class="serif h2" style="margin-top:10px">Creator-first. Brand-safe. Built to scale.</h2>
+        <p style="margin-top:12px; max-width:70ch">
+          Averon Studios helps brands and creators build consistent attention and turn it into leads and revenue.
+          We focus on clarity (offer + audience), creative (story + hooks), and systems (cadence + reporting).
+        </p>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({ once:true, duration:700, offset: 10 });
+        <div class="grid3" style="margin-top:18px">
+          <div class="card">
+            <h3 class="serif h3">Our promise</h3>
+            <p>Premium output, fast turnaround, and clear communication.</p>
+          </div>
+          <div class="card">
+            <h3 class="serif h3">Our process</h3>
+            <p>Kickoff → strategy → production → publish → report.</p>
+          </div>
+          <div class="card">
+            <h3 class="serif h3">Our focus</h3>
+            <p>Content that looks good and performs.</p>
+          </div>
+        </div>
+      </div>
 
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
+      <div class="heroCard fadeUp">
+        <div class="heroMedia" style="min-height:520px">
+          <div class="badge">Clear systems. Real growth.</div>
+          <div class="miniCard">
+            <h3 class="serif">Good fit if…</h3>
+            <p>You want consistent content without chaos, and reporting that actually means something.</p>
+            <div class="chips">
+              <span class="chip">Professional</span>
+              <span class="chip">Fast</span>
+              <span class="chip">On-brand</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    // Back to top
-    const bt = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      bt.style.display = window.scrollY > 420 ? 'grid' : 'none';
+    </div>
+  </section>
+
+  <!-- CAREERS -->
+  <section id="careers" class="section">
+    <div class="container">
+      <div class="kicker fadeUp">Careers</div>
+      <h2 class="serif h2 fadeUp" style="margin-top:10px">Join the studio.</h2>
+      <p class="fadeUp" style="margin-top:12px; max-width:75ch">
+        Small team, high standards. If you’re sharp on storytelling and obsessed with quality, we should talk.
+      </p>
+
+      <div class="grid3 fadeUp" style="margin-top:18px">
+        <div class="card">
+          <h3 class="serif h3">Video Editor</h3>
+          <p>Reels/Shorts pacing, sound design, captions, and brand consistency.</p>
+          <p class="small" style="margin-top:10px"><b>Type:</b> Contract • Remote</p>
+        </div>
+        <div class="card">
+          <h3 class="serif h3">Content Producer</h3>
+          <p>On-site shoots, shot lists, lighting basics, creator direction.</p>
+          <p class="small" style="margin-top:10px"><b>Type:</b> Part-time • Hybrid</p>
+        </div>
+        <div class="card">
+          <h3 class="serif h3">Social Manager</h3>
+          <p>Publishing, copywriting, community engagement, reporting.</p>
+          <p class="small" style="margin-top:10px"><b>Type:</b> Contract • Remote</p>
+        </div>
+      </div>
+
+      <div class="heroActions fadeUp" style="margin-top:22px">
+        <a class="btn primary" href="mailto:hello@averonstudios.com?subject=Careers%20—%20Averon%20Studios">Apply via Email</a>
+        <a class="btn" href="#contact">General Inquiry</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="container split">
+      <div class="panel fadeUp">
+        <div class="kicker">Contact</div>
+        <h2 class="serif h2" style="margin-top:10px">Work with us.</h2>
+        <p style="margin-top:10px; max-width:60ch">
+          Tell us what you’re building and where you want to go. We’ll reply within 24 hours.
+        </p>
+        <p class="small" style="margin-top:12px; color:rgba(255,255,255,.72)">
+          Email: <b>hello@averonstudios.com</b><br/>
+          Location: Washington • Remote
+        </p>
+      </div>
+
+      <div class="panel fadeUp">
+        <!-- Replace Formspree endpoint with yours -->
+        <form class="form" action="https://formspree.io/f/XXXXXXXX" method="POST">
+          <div class="row2">
+            <div>
+              <label for="f_first">First name</label>
+              <input id="f_first" name="firstName" autocomplete="given-name" required />
+            </div>
+            <div>
+              <label for="f_last">Last name</label>
+              <input id="f_last" name="lastName" autocomplete="family-name" required />
+            </div>
+          </div>
+
+          <div>
+            <label for="f_email">Email</label>
+            <input id="f_email" name="email" type="email" autocomplete="email" required />
+          </div>
+
+          <div>
+            <label for="f_company">Company / Brand</label>
+            <input id="f_company" name="company" autocomplete="organization" required />
+          </div>
+
+          <div class="row2">
+            <div>
+              <label for="f_platform">Primary platform</label>
+              <select id="f_platform" name="platform">
+                <option>Instagram</option>
+                <option>YouTube</option>
+                <option>TikTok</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div>
+              <label for="f_budget">Monthly budget</label>
+              <select id="f_budget" name="budget">
+                <option>$500–$1,500</option>
+                <option>$1,500–$3,500</option>
+                <option>$3,500–$7,500</option>
+                <option>$7,500+</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="f_msg">What do you need help with?</label>
+            <textarea id="f_msg" name="message" required></textarea>
+          </div>
+
+          <button class="btn primary" type="submit">Submit</button>
+          <p class="small" style="color:rgba(255,255,255,.68)">
+            By submitting, you agree to our <a href="#privacy" style="text-decoration:underline">privacy policy</a>.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVACY -->
+  <section id="privacy" class="section">
+    <div class="container">
+      <div class="kicker fadeUp">Privacy</div>
+      <h2 class="serif h2 fadeUp" style="margin-top:10px">Privacy Policy</h2>
+      <div class="card fadeUp" style="margin-top:18px">
+        <p><b>Summary:</b> We collect the info you submit (name, email, message) to respond to your inquiry. We don’t sell your data.</p>
+        <p style="margin-top:12px"><b>Contact forms:</b> If you use Formspree/Calendly/CRM, their services may process your submission.</p>
+        <p style="margin-top:12px"><b>Analytics:</b> If enabled, analytics may collect anonymized usage (pages visited, device type).</p>
+        <p style="margin-top:12px"><b>Questions:</b> Email <a href="mailto:hello@averonstudios.com" style="text-decoration:underline">hello@averonstudios.com</a>.</p>
+        <p class="small" style="margin-top:14px">Last updated: <span class="mono" id="privacyDate"></span></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footerGrid">
+    <div class="footerCard">
+      <div class="brand" style="gap:10px">
+        <svg class="mark" aria-hidden="true"><use href="#brandmark"></use></svg>
+        <div>
+          <div class="name" style="color:#fff">Averon Studios</div>
+          <div class="tag" style="color:rgba(255,255,255,.78)">Social + Content Agency</div>
+        </div>
+      </div>
+      <p style="margin-top:10px">Premium creative. Clear systems. Real growth.</p>
+      <div class="social" aria-label="Social links">
+        <a href="#" aria-label="Instagram"><svg><use href="#s-instagram"></use></svg></a>
+        <a href="#" aria-label="YouTube"><svg><use href="#s-youtube"></use></svg></a>
+        <a href="#" aria-label="TikTok"><svg><use href="#s-tiktok"></use></svg></a>
+      </div>
+      <p class="small" style="margin-top:12px; color:rgba(255,255,255,.78)">© <span data-year></span> Averon Studios.</p>
+    </div>
+
+    <div class="footerCard">
+      <div class="kicker" style="color:rgba(255,255,255,.8)">Quick links</div>
+      <div class="footerLinks" style="margin-top:10px">
+        <a href="#services">Services</a>
+        <a href="#consultation">Consultation</a>
+        <a href="#work">Our Work</a>
+        <a href="#about">About</a>
+        <a href="#careers">Careers</a>
+        <a href="#contact">Contact</a>
+        <a href="#privacy">Privacy</a>
+      </div>
+    </div>
+
+    <div class="footerCard">
+      <div class="kicker" style="color:rgba(255,255,255,.8)">Contact</div>
+      <p style="margin-top:10px"><a href="mailto:hello@averonstudios.com" style="text-decoration:underline; color:#fff">hello@averonstudios.com</a></p>
+      <p class="small" style="margin-top:8px; color:rgba(255,255,255,.78)">Washington • Remote</p>
+      <p class="small" style="margin-top:10px; color:rgba(255,255,255,.78)">
+        <a href="#privacy" style="text-decoration:underline; color:rgba(255,255,255,.9)">Privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  // Mobile nav toggle
+  const toggle = document.querySelector("[data-mobile-toggle]");
+  const panel = document.querySelector("[data-mobile-panel]");
+  if (toggle && panel) {
+    toggle.addEventListener("click", () => {
+      const isOpen = panel.getAttribute("data-open") === "true";
+      panel.setAttribute("data-open", String(!isOpen));
+      panel.style.display = isOpen ? "none" : "block";
+      toggle.setAttribute("aria-expanded", String(!isOpen));
     });
-    bt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    panel.style.display = "none";
+  }
 
-    // Testimonials slider
-    const slides = document.getElementById('slides');
-    const dots = document.querySelectorAll('#dots button');
-    dots.forEach((dot, i) => dot.addEventListener('click', () => {
-      slides.style.transform = `translateX(-${100 * i}%)`;
-      dots.forEach(d => d.classList.remove('active'));
-      dot.classList.add('active');
-    }));
+  // Reveal animations
+  const els = document.querySelectorAll(".fadeUp");
+  const io = new IntersectionObserver(
+    (entries) => entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add("in");
+        io.unobserve(e.target);
+      }
+    }),
+    { threshold: 0.12 }
+  );
+  els.forEach(el => io.observe(el));
 
-    // Mobile drawer
-    const drawer = document.getElementById('drawer');
-    const openMenu = document.getElementById('openMenu');
-    const closeMenu = document.getElementById('closeMenu');
+  // Year + privacy date
+  const year = document.querySelector("[data-year]");
+  if (year) year.textContent = new Date().getFullYear();
+  const pd = document.getElementById("privacyDate");
+  if (pd) pd.textContent = new Date().toISOString().slice(0,10);
 
-    function setDrawer(open){
-      drawer.classList.toggle('open', open);
-      drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
-      document.body.style.overflow = open ? 'hidden' : '';
+  // Active nav link based on scroll position
+  const navLinks = [...document.querySelectorAll("[data-nav]")];
+  const sections = navLinks
+    .map(a => document.getElementById(a.getAttribute("data-nav")))
+    .filter(Boolean);
+
+  const setActive = (id) => {
+    navLinks.forEach(a => a.classList.toggle("active", a.getAttribute("data-nav") === id));
+  };
+
+  const spy = new IntersectionObserver((entries) => {
+    // pick the most visible intersecting section
+    const visible = entries.filter(e => e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+    if (visible?.target?.id) setActive(visible.target.id);
+  }, { threshold: [0.2, 0.35, 0.5, 0.65] });
+
+  sections.forEach(s => spy.observe(s));
+
+  // If user lands on a hash, ensure it's scrolled nicely (after layout)
+  window.addEventListener("load", () => {
+    if (location.hash) {
+      const target = document.querySelector(location.hash);
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-    openMenu?.addEventListener('click', () => setDrawer(true));
-    closeMenu?.addEventListener('click', () => setDrawer(false));
-    drawer.addEventListener('click', (e) => {
-      if (e.target === drawer) setDrawer(false);
-    });
-
-    // Form (front-end only)
-    document.getElementById('consultForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      // Hook this to your backend/email provider (Formspree, custom API, etc.)
-      alert("Thanks! We received your request and will reach out within 24 hours.");
-      e.target.reset();
-    });
-  </script>
+  });
+})();
+</script>
 </body>
 </html>
